@@ -12,6 +12,10 @@ A modern, responsive user interface built with Next.js for managing contacts and
 
 ## 🛠 Setup & Installation
 
+### Prerequisites
+- **Node.js**: ≥ 22.14.0
+- **Next.js**: 16.2.4
+
 1. Install dependencies:
    ```bash
    npm install
