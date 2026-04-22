@@ -31,10 +31,27 @@ export default function UploadModal({ isOpen, onClose }) {
     setMessage("Processing upload...");
     
     try {
-      // Validate record count
-      const text = await file.text();
-      const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
-      const recordCount = lines.length - 1; // Assuming header row
+      // Validate record count using streaming approach (memory efficient)
+      const reader = file.stream().getReader();
+      const decoder = new TextDecoder();
+      let lineCount = 0;
+      let leftover = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = (leftover + chunk).split(/\r?\n/);
+        leftover = lines.pop();
+
+        for (const line of lines) {
+          if (line.trim()) lineCount++;
+        }
+      }
+      if (leftover.trim()) lineCount++;
+      
+      const recordCount = lineCount > 0 ? lineCount - 1 : 0; // Subtract header
 
       if (recordCount > CSV_RECORDS_LIMIT) {
         throw new Error(`CSV file too large. Maximum ${CSV_RECORDS_LIMIT.toLocaleString()} records allowed. Found ${recordCount.toLocaleString()}.`);

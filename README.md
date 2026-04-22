@@ -36,7 +36,7 @@ A modern, responsive user interface built with Next.js for managing contacts and
 Implemented a 800ms debounce on search and tag filters to reduce API load and prevent UI flickering.
 
 ### 2. Client-Side Validation
-Record count validation (10k limit) is performed directly in the browser for instant user feedback.
+Record count validation (10k limit) is performed directly in the browser using a **memory-efficient streaming approach**, allowing for validation without loading the entire file into memory.
 
 ### 3. Styling System
 Combined Tailwind CSS for layout efficiency with Vanilla CSS for premium design tokens and glassmorphism.
