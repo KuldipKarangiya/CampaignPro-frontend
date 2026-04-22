@@ -30,27 +30,22 @@ A modern, responsive user interface built with Next.js for managing contacts and
 
 ---
 
-## 🧠 Design Decisions & Trade-offs
+## 🧠 Design Decisions
 
 ### 1. Debounced Filtering
-- **Decision**: Implemented a 800ms debounce on search and tag filters.
-- **Trade-off**: Slightly delayed feedback (0.8s), but drastically reduces the number of API calls, saving server resources and preventing UI flickering during rapid typing.
+Implemented a 800ms debounce on search and tag filters to reduce API load and prevent UI flickering.
 
 ### 2. Client-Side Validation
-- **Decision**: Added record count validation (10k limit) directly in the browser before uploading to Cloudinary.
-- **Trade-off**: Requires reading the file content on the client side (using `file.text()`), which could be memory-intensive for massive files, but provides instant feedback to the user without wasting bandwidth on an invalid upload.
+Record count validation (10k limit) is performed directly in the browser for instant user feedback.
 
-### 3. Tailwind CSS & Vanilla CSS
-- **Decision**: Used Tailwind for layout utility and Vanilla CSS for custom design tokens (glassmorphism, dark mode colors).
-- **Trade-off**: Two different styling approaches, but it provides the best of both worlds: rapid layout development and a deeply customized, premium aesthetic.
+### 3. Styling System
+Combined Tailwind CSS for layout efficiency with Vanilla CSS for premium design tokens and glassmorphism.
 
 ### 4. Lucide Icons
-- **Decision**: Used SVG-based Lucide icons.
-- **Trade-off**: Adds a small bundle size, but ensures icons are crisp, themeable via CSS, and lightweight compared to icon fonts.
+Used SVG-based Lucide icons for crisp, themeable, and lightweight iconography.
 
 ### 5. Infinite Scroll
-- **Decision**: Used `IntersectionObserver` for auto-loading more contacts.
-- **Trade-off**: More complex to implement than "Load More" buttons, but creates a seamless "premium" feel for the user.
+Implemented `IntersectionObserver` for seamless auto-loading of contacts to provide a premium user experience.
 
 ---
 
