@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Users, LayoutDashboard, Send, Menu, X } from "lucide-react";
+import { Users, LayoutDashboard, Send, Menu, X, UploadCloud } from "lucide-react";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -13,6 +13,7 @@ export default function Navigation() {
     { href: "/", label: "Dashboard", icon: LayoutDashboard },
     { href: "/contacts", label: "Contacts", icon: Users },
     { href: "/campaigns", label: "Campaigns", icon: Send },
+    { href: "/uploads", label: "Uploads", icon: UploadCloud },
   ];
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);

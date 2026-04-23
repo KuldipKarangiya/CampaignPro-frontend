@@ -20,6 +20,10 @@ export const contactService = {
     if (sort) params.sort = sort;
     const response = await api.get('/api/contacts', { params });
     return response.data;
+  },
+  getUploads: async () => {
+    const response = await api.get('/api/contacts/uploads');
+    return response.data;
   }
 };
 
